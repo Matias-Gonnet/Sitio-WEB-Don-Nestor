@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cabaña Don Nestor | Angus e Ile de France en Rocha, Uruguay</title>
+<meta name="description" content="Cabaña rural dedicada a la cría de Angus e Ile de France, en la Picada de Chafalote, Ruta 9 km 236, Rocha, Uruguay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pasto:#22302A; --pasto-hondo:#1A241F; --hueso:#EFEEE8; --paja:#B39A5B; --piedra:#5E625A;
+  --display:"Libre Caslon Display","Times New Roman",serif;
+  --texto:"Libre Caslon Text",Georgia,serif;
+  --ui:"Instrument Sans",system-ui,sans-serif;
+  --lado:clamp(1.25rem,6vw,5rem);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+body{font-family:var(--texto);font-size:1.0625rem;line-height:1.75;color:var(--pasto);background:var(--hueso)}
+img{max-width:100%;display:block}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--paja);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.1}
+h2{font-size:clamp(2rem,4.5vw,3.25rem);margin-bottom:1.25rem}
+h3{font-size:clamp(1.75rem,3vw,2.25rem);margin-bottom:.75rem}
+p+p{margin-top:1em}
+.seccion{padding:clamp(4rem,10vw,8rem) var(--lado)}
+.ancho{max-width:72rem;margin:0 auto}
+
+/* Los logos son imagen; si falta el archivo se muestra el texto */
+.marca .texto{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.marca.sin-imagen .texto{position:static;width:auto;height:auto;clip:auto;font-family:var(--display);font-size:1.6rem}
+
+/* Encabezado */
+.cabecera{position:fixed;inset:0 0 auto;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:.9rem var(--lado);color:var(--hueso);transition:background .3s}
+.cabecera.fijo,.cabecera.abierto{background:var(--pasto)}
+.cabecera .logo img{height:3.25rem;width:auto}
+.menu{display:flex;gap:2rem;list-style:none;padding:0;font-family:var(--ui);font-size:.95rem;font-weight:500}
+.menu a{text-decoration:none;padding:.4rem 0;border-bottom:1px solid transparent}
+.menu a:hover{border-color:var(--paja)}
+.burger{display:none;background:none;border:1px solid currentColor;color:inherit;font:500 .9rem var(--ui);padding:.5rem .9rem;cursor:pointer}
+
+/* Portada: reemplazá img/fondos/portada.jpg */
+.portada{min-height:100svh;display:flex;align-items:center;padding:7rem var(--lado) 4rem;color:var(--hueso);
+  background:linear-gradient(90deg,rgba(26,36,31,.82),rgba(26,36,31,.25)),url(img/fondos/portada.jpg) center/cover,var(--pasto)}
+.portada .contenido{max-width:38rem;animation:entrar 1.2s ease-out both}
+.portada h1 img{width:min(34rem,82vw);height:auto}
+.portada h1.marca.sin-imagen .texto{font-size:clamp(3rem,8vw,5.5rem)}
+.portada p{margin-top:1.5rem;font-size:1.25rem;font-style:italic}
+.botones{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.25rem}
+.boton{display:inline-block;font:600 .95rem var(--ui);text-decoration:none;padding:.9rem 1.6rem;border:1px solid var(--paja);transition:background .2s,color .2s}
+.boton.lleno{background:var(--paja);color:var(--pasto-hondo)}
+.boton.lleno:hover{background:var(--hueso);border-color:var(--hueso)}
+.boton.vacio{color:inherit}
+.boton.vacio:hover{background:var(--paja);color:var(--pasto-hondo)}
+@keyframes entrar{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* La cabaña */
+.dos{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(2rem,6vw,6rem);align-items:start}
+.datos{border-top:2px solid var(--paja);font-family:var(--ui)}
+.datos div{display:grid;grid-template-columns:7rem 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(34,48,42,.2)}
+.datos dt{color:var(--piedra);font-size:.9rem}
+.datos dd{font-weight:500}
+
+/* Bandas con fondo fijo: reemplazá los archivos en img/fondos/ */
+.banda{min-height:48vh;display:grid;place-items:center;padding:3rem var(--lado);text-align:center;color:var(--hueso);
+  background:linear-gradient(rgba(26,36,31,.45),rgba(26,36,31,.45)),var(--img) center/cover fixed,var(--pasto)}
+.banda p{font:clamp(1.75rem,4.5vw,3.25rem)/1.15 var(--display)}
+
+/* Razas */
+.razas{display:grid;grid-template-columns:1fr 1fr}
+.raza{min-height:34rem;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(2rem,5vw,4.5rem) var(--lado);color:var(--hueso);
+  background:linear-gradient(to top,rgba(26,36,31,.9),rgba(26,36,31,.1) 75%),var(--img) center/cover,var(--pasto-hondo)}
+.raza p{max-width:28rem}
+
+/* Angus de Chafalote */
+.chafalote{color:var(--hueso);background:linear-gradient(rgba(26,36,31,.8),rgba(26,36,31,.8)),url(img/fondos/chafalote.jpg) center/cover fixed,var(--pasto-hondo)}
+.chafalote .dos{align-items:center}
+.chafalote img{width:min(22rem,100%);margin:0 auto}
+.chafalote .marca.sin-imagen .texto{font-size:2.5rem}
+
+/* Contacto */
+.contacto{background:var(--pasto);color:var(--hueso);text-align:center}
+.contacto p{max-width:34rem;margin:0 auto}
+.contacto .botones{justify-content:center}
+footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;padding:1.75rem var(--lado);background:var(--pasto-hondo);color:var(--hueso);font:.9rem var(--ui)}
+footer img{height:2.75rem;width:auto}
+
+@media (max-width:860px){
+  .burger{display:block}
+  .menu{display:none;position:absolute;inset:100% 0 auto;flex-direction:column;gap:0;background:var(--pasto);padding:.5rem var(--lado) 1.5rem}
+  .cabecera.abierto .menu{display:flex}
+  .menu a{display:block;padding:.8rem 0}
+  .dos,.razas{grid-template-columns:1fr}
+  .banda,.chafalote{background-attachment:scroll}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .portada .contenido{animation:none}
+}
+</style>
+</head>
+<body>
+
+<header class="cabecera" id="cabecera">
+  <a class="logo marca" href="#inicio">
+    <img src="img/logos/logo-principal.png" alt="Logo de Cabaña Don Nestor" onerror="this.parentElement.classList.add('sin-imagen');this.remove()">
+    <span class="texto">Cabaña Don Nestor</span>
+  </a>
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menú</button>
+  <nav aria-label="Principal">
+    <ul class="menu" id="menu">
+      <li><a href="#cabana">La cabaña</a></li>
+      <li><a href="#razas">Razas</a></li>
+      <li><a href="#chafalote">Angus de Chafalote</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="portada" id="inicio">
+    <div class="contenido">
+      <h1 class="marca">
+        <img src="img/logos/logo-nombre.png" alt="Cabaña Don Nestor" onerror="this.parentElement.classList.add('sin-imagen');this.remove()">
+        <span class="texto">Cabaña Don Nestor</span>
+      </h1>
+      <p>Cría de Angus e Ile de France en Rocha, Uruguay.</p>
+      <div class="botones">
+        <a class="boton lleno" href="#razas">Conocer las razas</a>
+        <a class="boton vacio" href="#ubicacion">Cómo llegar</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="cabana">
+    <div class="ancho dos">
+      <div>
+        <h2>Una cabaña rural en la Picada de Chafalote</h2>
+        <p>Cabaña Don Nestor se dedica a la producción de Angus e Ile de France en el departamento de Rocha, sobre la Ruta 9.</p>
+        <p>Es un campo de trabajo donde la cría se hace con dedicación a cada animal y a la tradición rural del este uruguayo.</p>
+      </div>
+      <dl class="datos">
+        <div><dt>Razas</dt><dd>Angus e Ile de France</dd></div>
+        <div><dt>Ruta</dt><dd>Ruta 9, kilómetro 236</dd></div>
+        <div><dt>Paraje</dt><dd>Picada de Chafalote</dd></div>
+        <div><dt>Departamento</dt><dd>Rocha, Uruguay</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="banda" style="--img:url(img/fondos/campo.jpg)">
+    <p>Campo abierto en Rocha</p>
+  </div>
+
+  <section id="razas" aria-label="Razas">
+    <div class="razas">
+      <article class="raza" style="--img:url(img/fondos/angus.jpg)">
+        <h3>Angus</h3>
+        <p>Raza bovina de carne, reconocida por su rusticidad, su docilidad y la calidad de su carne.</p>
+      </article>
+      <article class="raza" style="--img:url(img/fondos/ile-de-france.jpg)">
+        <h3>Ile de France</h3>
+        <p>Raza ovina de origen francés, valorada por su buena conformación y su producción de carne.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="seccion chafalote" id="chafalote">
+    <div class="ancho dos">
+      <div class="marca">
+        <img src="img/logos/logo-angus-chafalote.png" alt="Angus de Chafalote" onerror="this.parentElement.classList.add('sin-imagen');this.remove()">
+        <span class="texto">Angus de Chafalote</span>
+      </div>
+      <div>
+        <h2>Angus de Chafalote</h2>
+        <p>Nuestra cría de Angus lleva el nombre del paraje donde nace: la Picada de Chafalote.</p>
+        <div class="botones"><a class="boton vacio" href="#contacto">Consultar por animales</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="ubicacion">
+    <div class="ancho dos">
+      <div>
+        <h2>Dónde estamos</h2>
+        <p>Ruta 9, kilómetro 236, en la Picada de Chafalote, departamento de Rocha, Uruguay.</p>
+        <div class="botones">
+          <!-- Ajustá el enlace si querés apuntar a la ubicación exacta del campo -->
+          <a class="boton lleno" href="https://www.google.com/maps/search/?api=1&query=Ruta+9+km+236+Rocha+Uruguay" target="_blank" rel="noopener">Abrir en Google Maps</a>
+        </div>
+      </div>
+      <dl class="datos">
+        <div><dt>Dirección</dt><dd>Ruta 9, km 236</dd></div>
+        <div><dt>Paraje</dt><dd>Picada de Chafalote</dd></div>
+        <div><dt>Departamento</dt><dd>Rocha</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="seccion contacto" id="contacto">
+    <h2>Consultas y visitas</h2>
+    <p>Escribinos para conocer los animales o coordinar una visita a la cabaña.</p>
+    <div class="botones">
+      <!-- Reemplazá 598XXXXXXXX por el número real (código de país sin el +) -->
+      <a class="boton lleno" href="https://wa.me/598XXXXXXXX" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      <!-- Reemplazá por el correo real -->
+      <a class="boton vacio" href="mailto:correo@ejemplo.com">Enviar un correo</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span class="marca">
+    <img src="img/logos/logo-principal.png" alt="Logo de Cabaña Don Nestor" onerror="this.parentElement.classList.add('sin-imagen');this.remove()">
+    <span class="texto">Cabaña Don Nestor</span>
+  </span>
+  <span>Ruta 9, km 236, Picada de Chafalote, Rocha, Uruguay</span>
+</footer>
+
+<script>
+  const cab = document.getElementById('cabecera'), bur = document.getElementById('burger');
+  const marcar = () => cab.classList.toggle('fijo', window.scrollY > 40);
+  window.addEventListener('scroll', marcar, {passive:true}); marcar();
+  bur.addEventListener('click', () => {
+    const abierto = cab.classList.toggle('abierto');
+    bur.setAttribute('aria-expanded', abierto);
+  });
+  document.querySelectorAll('.menu a').forEach(a => a.addEventListener('click', () => {
+    cab.classList.remove('abierto'); bur.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+</body>
+</html>
