@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Próximos Remates | Cabaña Don Nestor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/extras.css">
+
+<style>
+  @media (max-width: 600px) {
+    main {
+      padding-top: 4.2rem !important;
+    }
+    .seccion {
+      padding: 1.5rem 0.75rem !important;
+    }
+    .seccion h2 {
+      font-size: 1.8rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+    .remate {
+      grid-template-columns: 1fr !important;
+      gap: 0.75rem !important;
+      padding: 1.5rem 0 !important;
+    }
+    .remate .fecha b {
+      font-size: 2.5rem !important;
+    }
+    .permanente {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 1rem !important;
+    }
+    .permanente .botones {
+      width: 100% !important;
+    }
+    .permanente .botones a {
+      width: 100% !important;
+      text-align: center !important;
+    }
+  }
+</style>
+</head>
+<body class="fondo-oscuro">
+
+<header class="cabecera">
+  <nav aria-label="Principal">
+    <ul class="menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="catalogo.html">Animales</a></li>
+      <li><a href="remates.html" class="activo">Remates</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="logo-flotante" id="logoFlotante">
+  <a class="marca" href="index.html">
+    <img src="img/logos/logo-principal.png" alt="Logo de Cabaña Don Nestor" onerror="this.parentElement.classList.add('sin-imagen');this.remove()">
+    <span class="texto">Cabaña Don Nestor</span>
+  </a>
+</div>
+
+<main style="padding-top: 5rem;">
+  <section class="seccion fondo-oscuro" id="remates">
+    <div class="ancho">
+      <h2>Próximos remates</h2>
+      
+      <div id="lista-remates">
+        
+        <!-- Remate 1 -->
+        <article class="remate">
+          <div class="fecha">
+            <b>21</b>
+            <span>noviembre, 2026</span>
+          </div>
+          <div>
+            <h3>Gran Remate Anual de Primavera</h3>
+            <p>Oferta especial de reproductores Angus seleccionados y vientres Ile de France de elite.</p>
+            <p class="meta">14:00 h · Cabaña Don Nestor, Ruta 9 km 236 · Zambrano &amp; Cía.</p>
+            
+            <div class="botones">
+              <a class="boton lleno" href="https://wa.me/59899123456?text=Hola,%20quiero%20información%20sobre%20el%20Gran%20Remate%20Anual%20de%20Primavera." target="_blank" rel="noopener">Pedir información por WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Remate 2 -->
+        <article class="remate">
+          <div class="fecha">
+            <b>15</b>
+            <span>abril, 2027</span>
+          </div>
+          <div>
+            <h3>Feria Especial Zafrita de Otoño</h3>
+            <p>Venta exclusiva de carneros borregos y toros rústicos de campo criados a pasto.</p>
+            <p class="meta">15:30 h · Local Rural de Rocha · Indarte &amp; Cía.</p>
+            
+            <div class="botones">
+              <a class="boton lleno" href="https://wa.me/59899123456?text=Hola,%20quiero%20información%20sobre%20la%20Feria%20Especial%20Zafrita%20de%20Otoño." target="_blank" rel="noopener">Pedir información por WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Remate 3 -->
+        <article class="remate">
+          <div class="fecha">
+            <b>10</b>
+            <span>agosto, 2027</span>
+          </div>
+          <div>
+            <h3>Exposición Ganadera Regional de Invierno</h3>
+            <p>Presentación de lotes de exposición y venta selectiva de genética de cabaña.</p>
+            <p class="meta">13:00 h · Sociedad Agropecuaria de Rocha · Escritorio Rural</p>
+            
+            <div class="botones">
+              <a class="boton lleno" href="https://wa.me/59899123456?text=Hola,%20quiero%20información%20sobre%20la%20Exposición%20Ganadera%20Regional." target="_blank" rel="noopener">Pedir información por WhatsApp</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="permanente">
+        <p>Además de los remates, siempre tenemos animales disponibles en venta permanente, con precio y condiciones a convenir.</p>
+        <div class="botones">
+          <a class="boton lleno" href="catalogo.html">Ver venta permanente</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; Cabaña Don Nestor - Rocha, Uruguay.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

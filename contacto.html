@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contacto y Ubicación | Cabaña Don Nestor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/extras.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <nav aria-label="Principal">
+    <ul class="menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="catalogo.html">Animales</a></li>
+      <li><a href="remates.html">Remates</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="contacto.html" class="activo">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="logo-flotante" id="logoFlotante">
+  <a class="marca" href="index.html">
+    <img src="img/logos/logo-principal.png" alt="Logo de Cabaña Don Nestor" onerror="this.parentElement.classList.add('sin-imagen');this.remove()">
+    <span class="texto">Cabaña Don Nestor</span>
+  </a>
+</div>
+
+<main style="padding-top: 5rem;">
+  <section class="seccion" id="ubicacion">
+    <div class="ancho dos">
+      <div>
+        <h2>Dónde estamos</h2>
+        <p>Ruta 9, kilómetro 236, en la Picada de Chafalote, departamento de Rocha, Uruguay.</p>
+        <div class="botones">
+          <a class="boton lleno" href="https://www.google.com/maps/search/?api=1&query=Ruta+9+km+236+Rocha+Uruguay" target="_blank" rel="noopener">Abrir en Google Maps</a>
+        </div>
+      </div>
+      <dl class="datos">
+        <div><dt>Dirección</dt><dd>Ruta 9, km 236</dd></div>
+        <div><dt>Paraje</dt><dd>Picada de Chafalote</dd></div>
+        <div><dt>Departamento</dt><dd>Rocha</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="seccion contacto" id="contacto">
+    <h2>Consultas y visitas</h2>
+    <p>Escribinos para conocer los animales o coordinar una visita a la cabaña.</p>
+    <div class="botones">
+      <a class="boton lleno" href="https://wa.me/59899123456" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      <a class="boton vacio" href="mailto:correo@ejemplo.com">Enviar un correo</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; Cabaña Don Nestor - Rocha, Uruguay.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

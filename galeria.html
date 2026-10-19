@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galería | Cabaña Don Nestor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/extras.css">
+
+<style>
+  .galeria {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)) !important;
+    gap: 1.25rem !important;
+  }
+
+  .galeria button {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    overflow: hidden;
+    text-align: left;
+    display: block;
+    width: 100%;
+    transition: transform 0.2s ease;
+  }
+
+  .galeria button:active {
+    transform: scale(0.98);
+  }
+
+  .galeria img {
+    width: 100%;
+    aspect-ratio: 16 / 9 !important;
+    object-fit: cover !important;
+    display: block;
+  }
+
+  /* Visor de pantalla completa unificado con el estilo del catálogo */
+  dialog.visor {
+    padding: 0;
+    background: rgba(0, 0, 0, 0.92);
+    border: none;
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  dialog.visor img {
+    max-width: 100%;
+    max-height: 75vh;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+
+  dialog.visor p {
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  /* Botón de cierre estandarizado idéntico al del catálogo */
+  dialog.visor .cerrar {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.25rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+
+  dialog.visor .cerrar:hover {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  @media (max-width: 600px) {
+    main {
+      padding-top: 4.2rem !important;
+    }
+    .seccion {
+      padding: 1.5rem 0.75rem !important;
+    }
+    .seccion h2 {
+      font-size: 1.8rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+    .galeria {
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="cabecera">
+  <nav aria-label="Principal">
+    <ul class="menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="catalogo.html">Animales</a></li>
+      <li><a href="remates.html">Remates</a></li>
+      <li><a href="galeria.html" class="activo">Galería</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="logo-flotante" id="logoFlotante">
+  <a class="marca" href="index.html">
+    <img src="img/logos/logo-principal.png" alt="Logo de Cabaña Don Nestor" onerror="this.parentElement.classList.add('sin-imagen');this.remove()">
+    <span class="texto">Cabaña Don Nestor</span>
+  </a>
+</div>
+
+<main style="padding-top: 5rem;">
+  <section class="seccion" id="galeria">
+    <div class="ancho">
+      <h2>Galería</h2>
+      <p>Fotos y videos de los animales, el campo y los remates anteriores.</p>
+      
+      <div class="galeria" id="galeria-grid">
+        
+        <button onclick="abrirVisor('img/galeria/g1.png', 'Lote de toros Angus al atardecer en Chafalote')" aria-label="Lote de toros Angus al atardecer en Chafalote">
+          <img src="img/galeria/g1.png" alt="Lote de toros Angus" loading="lazy" onerror="this.style.display='none'">
+        </button>
+
+        <button onclick="abrirVisor('img/galeria/g2.png', 'Majada Ile de France en pasturas naturales')" aria-label="Majada Ile de France en pasturas naturales">
+          <img src="img/galeria/g2.png" alt="Majada Ile de France" loading="lazy" onerror="this.style.display='none'">
+        </button>
+
+        <button onclick="abrirVisor('img/galeria/g3.png', 'Detalle de estructura y conformación carnicera')" aria-label="Detalle de estructura y conformación carnicera">
+          <img src="img/galeria/g3.png" alt="Conformación carnicera" loading="lazy" onerror="this.style.display='none'">
+        </button>
+
+        <button onclick="abrirVisor('img/galeria/g4.png', 'Vista panorámica de la cabaña sobre Ruta 9')" aria-label="Vista panorámica de la cabaña sobre Ruta 9">
+          <img src="img/galeria/g4.png" alt="Vista panorámica de la cabaña" loading="lazy" onerror="this.style.display='none'">
+        </button>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; Cabaña Don Nestor - Rocha, Uruguay.</p>
+</footer>
+
+<dialog id="visor-dlg" class="visor" aria-label="Visor de galería">
+  <button class="cerrar" aria-label="Cerrar" onclick="document.getElementById('visor-dlg').close()">×</button>
+  <div id="visor-cont"></div>
+</dialog>
+
+<script>
+  function abrirVisor(src, titulo) {
+    const visorCont = document.getElementById('visor-cont');
+    const visorDlg = document.getElementById('visor-dlg');
+    
+    visorCont.innerHTML = `
+      <img src="${src}" alt="${titulo}" onerror="this.style.display='none'">
+      <p>${titulo}</p>
+    `;
+    visorDlg.showModal();
+  }
+
+  document.querySelectorAll('dialog').forEach(d => {
+    d.addEventListener('click', e => { if (e.target === d || e.target.closest('.cerrar')) d.close(); });
+  });
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

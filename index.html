@@ -10,23 +10,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js')</script>
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/extras.css">
 </head>
 <body>
 
 <header class="cabecera" id="cabecera">
   <nav aria-label="Principal">
     <ul class="menu" id="menu">
-      <li style="--i:0"><a href="#cabana">La cabaña</a></li>
-      <li style="--i:1"><a href="#razas">Razas</a></li>
-      <li style="--i:2"><a href="#chafalote">Chafalote</a></li>
-      <li style="--i:3"><a href="#ubicacion">Ubicación</a></li>
-      <li style="--i:4"><a href="#contacto">Contacto</a></li>
+      <li><a href="index.html" class="activo">Inicio</a></li>
+      <li><a href="catalogo.html">Animales</a></li>
+      <li><a href="remates.html">Remates</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
     </ul>
   </nav>
 </header>
 
 <div class="logo-flotante" id="logoFlotante">
-  <a class="marca" href="#inicio">
+  <a class="marca" href="index.html">
     <img src="img/logos/logo-principal.png" alt="Logo de Cabaña Don Nestor" onerror="this.parentElement.classList.add('sin-imagen');this.remove()">
     <span class="texto">Cabaña Don Nestor</span>
   </a>
@@ -41,8 +42,8 @@
       </h1>
       <p>Cría de Angus e Ile de France en Rocha, Uruguay.</p>
       <div class="botones">
-        <a class="boton lleno" href="#razas">Conocer las razas</a>
-        <a class="boton vacio" href="#ubicacion">Cómo llegar</a>
+        <a class="boton lleno" href="catalogo.html">Ver los animales</a>
+        <a class="boton vacio" href="remates.html">Próximos remates</a>
       </div>
     </div>
     <span class="bajar" aria-hidden="true"></span>
@@ -90,37 +91,15 @@
       <div>
         <h2 data-r>Angus de Chafalote</h2>
         <p data-r style="--i:1">Nuestra cría de Angus lleva el nombre del paraje donde nace: la Picada de Chafalote.</p>
-        <div class="botones" data-r style="--i:2"><a class="boton vacio" href="#contacto">Consultar por animales</a></div>
+        <div class="botones" data-r style="--i:2"><a class="boton vacio" href="contacto.html">Consultar por animales</a></div>
       </div>
-    </div>
-  </section>
-
-  <section class="seccion" id="ubicacion">
-    <div class="ancho dos">
-      <div>
-        <h2 data-r>Dónde estamos</h2>
-        <p data-r style="--i:1">Ruta 9, kilómetro 236, en la Picada de Chafalote, departamento de Rocha, Uruguay.</p>
-        <div class="botones" data-r style="--i:2">
-          <a class="boton lleno" href="https://www.google.com/maps/search/?api=1&query=Ruta+9+km+236+Rocha+Uruguay" target="_blank" rel="noopener">Abrir en Google Maps</a>
-        </div>
-      </div>
-      <dl class="datos" data-r style="--i:3">
-        <div><dt>Dirección</dt><dd>Ruta 9, km 236</dd></div>
-        <div><dt>Paraje</dt><dd>Picada de Chafalote</dd></div>
-        <div><dt>Departamento</dt><dd>Rocha</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <section class="seccion contacto" id="contacto">
-    <h2 data-r>Consultas y visitas</h2>
-    <p data-r style="--i:1">Escribinos para conocer los animales o coordinar una visita a la cabaña.</p>
-    <div class="botones" data-r style="--i:2">
-      <a class="boton lleno" href="https://wa.me/598XXXXXXXX" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-      <a class="boton vacio" href="mailto:correo@ejemplo.com">Enviar un correo</a>
     </div>
   </section>
 </main>
+
+<footer>
+  <p>&copy; Cabaña Don Nestor - Rocha, Uruguay.</p>
+</footer>
 
 <script src="js/main.js"></script>
 </body>

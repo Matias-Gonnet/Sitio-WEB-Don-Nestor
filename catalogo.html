@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animales en Venta | Cabaña Don Nestor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/extras.css">
+
+<style>
+  /* Grilla y tarjetas optimizadas */
+  .grilla {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)) !important;
+    gap: 1.25rem !important;
+  }
+
+  .ficha-card {
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    text-align: left;
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+
+  .ficha-card:active {
+    transform: scale(0.98);
+  }
+
+  .ficha-card .foto {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9 !important;
+    background: var(--pasto-hondo, #1A241F);
+    overflow: hidden;
+    display: block;
+  }
+
+  .ficha-card .foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important;
+    display: block;
+  }
+
+  .ficha-card h3 {
+    font-size: 1.1rem !important;
+    margin: 0.75rem 0.75rem 0.2rem !important;
+    line-height: 1.2 !important;
+    color: var(--texto, #1A241F);
+  }
+
+  .ficha-card .sub {
+    font-size: 0.85rem !important;
+    padding: 0 0.75rem 0.85rem !important;
+    display: block;
+    color: var(--piedra, #5E625A);
+  }
+
+  /* Estilo del modal de ficha adaptado con el botón de cierre idéntico al de galería */
+  dialog#ficha-dlg {
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  dialog#ficha-dlg .cerrar {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.25rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+    z-index: 10;
+  }
+
+  dialog#ficha-dlg .cerrar:hover {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  @media (max-width: 600px) {
+    .grilla {
+      grid-template-columns: 1fr !important;
+      gap: 0.85rem !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="cabecera">
+  <nav aria-label="Principal">
+    <ul class="menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="catalogo.html" class="activo">Animales</a></li>
+      <li><a href="remates.html">Remates</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="logo-flotante" id="logoFlotante">
+  <a class="marca" href="index.html">
+    <img src="img/logos/logo-principal.png" alt="Logo de Cabaña Don Nestor" onerror="this.parentElement.classList.add('sin-imagen');this.remove()">
+    <span class="texto">Cabaña Don Nestor</span>
+  </a>
+</div>
+
+<main style="padding-top: 5rem;">
+  <section class="seccion" id="catalogo">
+    <div class="ancho">
+      <h2>Animales en venta</h2>
+      <p>Toros, carneros y borregas con su ficha completa: registro, genealogía, pesos y medidas. Toca un animal para verla.</p>
+      
+      <!-- Grilla de animales -->
+      <div class="grilla" id="grilla" aria-live="polite">
+        
+        <!-- Animal 1 -->
+        <button class="ficha-card" onclick="abrirFichaModal('Don Nestor Imperio', 'Toro Angus · RP 1234', 'img/animales/a1.png', 'En remate', [
+          ['Raza', 'Angus'], ['Categoría', 'Toro'], ['Registro', 'Pedigree'], ['Identificación', 'RP 1234'],
+          ['Nacimiento', '14 de agosto de 2024'], ['Pelaje / color', 'Negro'], 
+          ['Padre', 'Don Nestor Bismark (RP 982)'], ['Madre', 'Chafalote Esperanza (RP 810)'],
+          ['Peso al nacer', '34 kg'], ['Peso al destete', '228 kg'], ['Peso actual', '612 kg (18 meses)'],
+          ['Circunf. escrotal', '37 cm'], ['DEP / EPD', 'Peso al nacer +1,2 · Destete +24'],
+          ['Remate', 'Gran Remate Anual de Primavera, 21 de noviembre de 2026 · Lote 1'],
+          ['Observaciones', 'Excelente estructura ósea, ancho de lomo y gran temperamento dócil.']
+        ])">
+          <span class="foto">
+            <img src="img/animales/a1.png" alt="Don Nestor Imperio" loading="lazy" onerror="this.style.display='none'">
+          </span>
+          <h3>Don Nestor Imperio</h3>
+          <span class="sub">Toro Angus · RP 1234</span>
+        </button>
+
+        <!-- Animal 2 -->
+        <button class="ficha-card" onclick="abrirFichaModal('Chafalote Trueno', 'Toro Angus · RP 1240', 'img/animales/a2.png', 'Venta permanente', [
+          ['Raza', 'Angus'], ['Categoría', 'Toro'], ['Registro', 'Pedigree'], ['Identificación', 'RP 1240'],
+          ['Nacimiento', '2 de septiembre de 2024'], ['Pelaje / color', 'Colorado'], 
+          ['Padre', 'Cardenal Red Eye (RP 551)'], ['Madre', 'Chafalote Mandinga (RP 704)'],
+          ['Peso al nacer', '36 kg'], ['Peso al destete', '235 kg'], ['Peso actual', '598 kg (18 meses)'],
+          ['Circunf. escrotal', '36 cm'], ['DEP / EPD', 'Peso final +45'],
+          ['Observaciones', 'Toro colorado destacado por su profundidad y aptitud carnicera.']
+        ])">
+          <span class="foto">
+            <img src="img/animales/a2.png" alt="Chafalote Trueno" loading="lazy" onerror="this.style.display='none'">
+          </span>
+          <h3>Chafalote Trueno</h3>
+          <span class="sub">Toro Angus · RP 1240</span>
+        </button>
+
+        <!-- Animal 3 -->
+        <button class="ficha-card" onclick="abrirFichaModal('Don Nestor Alba', 'Carnero Ile de France · RP 0456', 'img/animales/o1.png', 'Venta permanente', [
+          ['Raza', 'Ile de France'], ['Categoría', 'Carnero'], ['Registro', 'Pedigree'], ['Identificación', 'RP 0456'],
+          ['Nacimiento', '10 de marzo de 2025'], ['Pelaje / color', 'Blanco'], 
+          ['Padre', 'Tres Árboles Zapatito'], ['Madre', 'Don Nestor Reina (RP 210)'],
+          ['Peso al nacer', '4,6 kg'], ['Peso al destete', '32 kg'], ['Peso actual', '88 kg'],
+          ['Circunf. escrotal', '34 cm'],
+          ['Observaciones', 'Imponente tipo carnicero, muy buena prolificidad y aplos correctos.']
+        ])">
+          <span class="foto">
+            <img src="img/animales/o1.png" alt="Don Nestor Alba" loading="lazy" onerror="this.style.display='none'">
+          </span>
+          <h3>Don Nestor Alba</h3>
+          <span class="sub">Carnero Ile de France · RP 0456</span>
+        </button>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; Cabaña Don Nestor - Rocha, Uruguay.</p>
+</footer>
+
+<!-- Modal de la ficha detallada -->
+<dialog id="ficha-dlg" aria-labelledby="ficha-titulo">
+  <button class="cerrar" aria-label="Cerrar" onclick="document.getElementById('ficha-dlg').close()">×</button>
+  <div class="ficha" id="ficha-cont"></div>
+</dialog>
+
+<script>
+  function abrirFichaModal(nombre, subtitulo, foto, estado, datosFila) {
+    const fichaCont = document.getElementById('ficha-cont');
+    const fichaDlg = document.getElementById('ficha-dlg');
+    
+    let htmlDatos = datosFila.map(f => `<div><dt>${f[0]}</dt><dd>${f[1]}</dd></div>`).join('');
+    let mensajeWa = encodeURIComponent(`Hola, consulto por ${nombre} (${subtitulo}).`);
+
+    fichaCont.innerHTML = `
+      <div class="ficha-lado"><img src="${foto}" alt="${nombre}" onerror="this.style.display='none'"></div>
+      <div class="ficha-cuerpo">
+        <h3 id="ficha-titulo">${nombre}</h3>
+        <p class="sub">${estado}</p>
+        <dl class="datos">${htmlDatos}</dl>
+        <div class="botones"><a class="boton lleno" target="_blank" rel="noopener" href="https://wa.me/59899123456?text=${mensajeWa}">Consultar por este animal</a></div>
+      </div>`;
+    
+    fichaDlg.showModal();
+  }
+
+  document.querySelectorAll('dialog').forEach(d => {
+    d.addEventListener('click', e => { if (e.target === d || e.target.closest('.cerrar')) d.close(); });
+  });
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
