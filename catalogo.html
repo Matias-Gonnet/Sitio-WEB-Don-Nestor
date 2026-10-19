@@ -14,25 +14,32 @@
   /* Grilla y tarjetas optimizadas */
   .grilla {
     display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)) !important;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)) !important;
     gap: 1.25rem !important;
+    align-items: start;
   }
 
   .ficha-card {
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
+    transition: box-shadow 0.2s ease;
     text-align: left;
-    display: block;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     padding: 0;
   }
 
-  .ficha-card:active {
-    transform: scale(0.98);
+  .ficha-card .tarjeta-resumen {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
   }
 
   .ficha-card .foto {
@@ -52,54 +59,115 @@
   }
 
   .ficha-card h3 {
-    font-size: 1.1rem !important;
-    margin: 0.75rem 0.75rem 0.2rem !important;
+    font-size: 1.05rem !important;
+    margin: 0.6rem 0.75rem 0.15rem !important;
     line-height: 1.2 !important;
     color: var(--texto, #1A241F);
   }
 
   .ficha-card .sub {
-    font-size: 0.85rem !important;
-    padding: 0 0.75rem 0.85rem !important;
+    font-size: 0.8rem !important;
+    padding: 0 0.75rem 0.6rem !important;
     display: block;
     color: var(--piedra, #5E625A);
   }
 
-  /* Estilo del modal de ficha adaptado con el botón de cierre idéntico al de galería */
-  dialog#ficha-dlg {
+  /* Estilo del contenido desplegable (Ficha expandida ultra compacta) */
+  .ficha-desplegable {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35 ease-out, padding 0.25s ease;
+    background: #fcfcfc;
+    border-top: 0px solid rgba(0, 0, 0, 0.06);
+    padding: 0 0.75rem;
+  }
+
+  .ficha-card.abierto .ficha-desplegable {
+    max-height: 1000px;
+    padding: 0.6rem 0.75rem 0.75rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  /* Diseño compacto para la lista de datos */
+  .datos-compactos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.35rem 0.5rem;
+    font-size: 0.78rem;
+    line-height: 1.2;
+    margin: 0;
     padding: 0;
-    border: none;
-    border-radius: 8px;
-    position: relative;
   }
 
-  dialog#ficha-dlg .cerrar {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 1.25rem;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 4px;
-    cursor: pointer;
+  .datos-compactos .dato-item {
     display: flex;
+    flex-direction: column;
+    background: #f4f5f3;
+    padding: 0.25rem 0.4rem;
+    border-radius: 3px;
+  }
+
+  .datos-compactos .dato-item.ancho-completo {
+    grid-column: span 2;
+  }
+
+  .datos-compactos dt {
+    font-weight: 600;
+    color: var(--piedra, #5E625A);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.1rem;
+  }
+
+  .datos-compactos dd {
+    margin: 0;
+    color: var(--texto, #1A241F);
+    word-break: break-word;
+  }
+
+  .badge-estado {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    background: #e2e8e4;
+    color: #1a241f;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Botón interactivo "Ver más" dentro de la tarjeta */
+  .btn-ver-mas {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease;
-    z-index: 10;
+    gap: 0.3rem;
+    margin: 0 0.75rem 0.6rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--pasto-hondo, #1A241F);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
   }
 
-  dialog#ficha-dlg .cerrar:hover {
-    background: rgba(0, 0, 0, 0.85);
+  .btn-ver-mas::after {
+    content: "▼";
+    font-size: 0.65rem;
+    transition: transform 0.2s ease;
   }
 
-  @media (max-width: 600px) {
-    .grilla {
-      grid-template-columns: 1fr !important;
-      gap: 0.85rem !important;
+  .ficha-card.abierto .btn-ver-mas::after {
+    transform: rotate(180deg);
+  }
+
+  @media (max-width: 480px) {
+    .datos-compactos {
+      grid-template-columns: 1fr;
+    }
+    .datos-compactos .dato-item.ancho-completo {
+      grid-column: span 1;
     }
   }
 </style>
@@ -129,59 +197,112 @@
   <section class="seccion" id="catalogo">
     <div class="ancho">
       <h2>Animales en venta</h2>
-      <p>Toros, carneros y borregas con su ficha completa: registro, genealogía, pesos y medidas. Toca un animal para verla.</p>
+      <p>Toros, carneros y borregas con su ficha completa: registro, genealogía, pesos y medidas. Toca en "Ver más" para desplegar los detalles de cada animal.</p>
       
       <!-- Grilla de animales -->
       <div class="grilla" id="grilla" aria-live="polite">
         
         <!-- Animal 1 -->
-        <button class="ficha-card" onclick="abrirFichaModal('Don Nestor Imperio', 'Toro Angus · RP 1234', 'img/animales/a1.png', 'En remate', [
-          ['Raza', 'Angus'], ['Categoría', 'Toro'], ['Registro', 'Pedigree'], ['Identificación', 'RP 1234'],
-          ['Nacimiento', '14 de agosto de 2024'], ['Pelaje / color', 'Negro'], 
-          ['Padre', 'Don Nestor Bismark (RP 982)'], ['Madre', 'Chafalote Esperanza (RP 810)'],
-          ['Peso al nacer', '34 kg'], ['Peso al destete', '228 kg'], ['Peso actual', '612 kg (18 meses)'],
-          ['Circunf. escrotal', '37 cm'], ['DEP / EPD', 'Peso al nacer +1,2 · Destete +24'],
-          ['Remate', 'Gran Remate Anual de Primavera, 21 de noviembre de 2026 · Lote 1'],
-          ['Observaciones', 'Excelente estructura ósea, ancho de lomo y gran temperamento dócil.']
-        ])">
-          <span class="foto">
-            <img src="img/animales/a1.png" alt="Don Nestor Imperio" loading="lazy" onerror="this.style.display='none'">
-          </span>
-          <h3>Don Nestor Imperio</h3>
-          <span class="sub">Toro Angus · RP 1234</span>
-        </button>
+        <div class="ficha-card" id="card-1">
+          <div class="tarjeta-resumen" onclick="toggleFicha('card-1')">
+            <span class="foto">
+              <img src="img/animales/a1.png" alt="Don Nestor Imperio" loading="lazy" onerror="this.style.display='none'">
+            </span>
+            <h3>Don Nestor Imperio</h3>
+            <span class="sub">Toro Angus · RP 1234</span>
+          </div>
+          <button class="btn-ver-mas" onclick="toggleFicha('card-1')">Ver más</button>
+          <div class="ficha-desplegable">
+            <span class="badge-estado">En remate</span>
+            <dl class="datos-compactos">
+              <div class="dato-item"><dt>Raza</dt><dd>Angus</dd></div>
+              <div class="dato-item"><dt>Categoría</dt><dd>Toro</dd></div>
+              <div class="dato-item"><dt>Registro</dt><dd>Pedigree</dd></div>
+              <div class="dato-item"><dt>Identificación</dt><dd>RP 1234</dd></div>
+              <div class="dato-item"><dt>Nacimiento</dt><dd>14/08/2024</dd></div>
+              <div class="dato-item"><dt>Pelaje</dt><dd>Negro</dd></div>
+              <div class="dato-item"><dt>Padre</dt><dd>Don Nestor Bismark (RP 982)</dd></div>
+              <div class="dato-item"><dt>Madre</dt><dd>Chafalote Esperanza (RP 810)</dd></div>
+              <div class="dato-item"><dt>Peso nacer</dt><dd>34 kg</dd></div>
+              <div class="dato-item"><dt>Peso destete</dt><dd>228 kg</dd></div>
+              <div class="dato-item"><dt>Peso actual</dt><dd>612 kg (18m)</dd></div>
+              <div class="dato-item"><dt>Circ. escrotal</dt><dd>37 cm</dd></div>
+              <div class="dato-item ancho-completo"><dt>DEP / EPD</dt><dd>PN +1,2 · Destete +24</dd></div>
+              <div class="dato-item ancho-completo"><dt>Remate</dt><dd>Primavera 21/11/2026 · Lote 1</dd></div>
+              <div class="dato-item ancho-completo"><dt>Observaciones</dt><dd>Estructura ósea destacada, ancho de lomo y carácter dócil.</dd></div>
+            </dl>
+            <div class="botones" style="margin-top: 0.6rem;">
+              <a class="boton lleno" style="width: 100%; text-align: center; padding: 0.4rem 0.5rem; font-size: 0.8rem;" target="_blank" rel="noopener" href="https://wa.me/59899123456?text=Hola,%20consulto%20por%20Don%20Nestor%20Imperio%20(Toro%20Angus%20·%20RP%201234).">Consultar por WhatsApp</a>
+            </div>
+          </div>
+        </div>
 
         <!-- Animal 2 -->
-        <button class="ficha-card" onclick="abrirFichaModal('Chafalote Trueno', 'Toro Angus · RP 1240', 'img/animales/a2.png', 'Venta permanente', [
-          ['Raza', 'Angus'], ['Categoría', 'Toro'], ['Registro', 'Pedigree'], ['Identificación', 'RP 1240'],
-          ['Nacimiento', '2 de septiembre de 2024'], ['Pelaje / color', 'Colorado'], 
-          ['Padre', 'Cardenal Red Eye (RP 551)'], ['Madre', 'Chafalote Mandinga (RP 704)'],
-          ['Peso al nacer', '36 kg'], ['Peso al destete', '235 kg'], ['Peso actual', '598 kg (18 meses)'],
-          ['Circunf. escrotal', '36 cm'], ['DEP / EPD', 'Peso final +45'],
-          ['Observaciones', 'Toro colorado destacado por su profundidad y aptitud carnicera.']
-        ])">
-          <span class="foto">
-            <img src="img/animales/a2.png" alt="Chafalote Trueno" loading="lazy" onerror="this.style.display='none'">
-          </span>
-          <h3>Chafalote Trueno</h3>
-          <span class="sub">Toro Angus · RP 1240</span>
-        </button>
+        <div class="ficha-card" id="card-2">
+          <div class="tarjeta-resumen" onclick="toggleFicha('card-2')">
+            <span class="foto">
+              <img src="img/animales/a2.png" alt="Chafalote Trueno" loading="lazy" onerror="this.style.display='none'">
+            </span>
+            <h3>Chafalote Trueno</h3>
+            <span class="sub">Toro Angus · RP 1240</span>
+          </div>
+          <button class="btn-ver-mas" onclick="toggleFicha('card-2')">Ver más</button>
+          <div class="ficha-desplegable">
+            <span class="badge-estado">Venta permanente</span>
+            <dl class="datos-compactos">
+              <div class="dato-item"><dt>Raza</dt><dd>Angus</dd></div>
+              <div class="dato-item"><dt>Categoría</dt><dd>Toro</dd></div>
+              <div class="dato-item"><dt>Registro</dt><dd>Pedigree</dd></div>
+              <div class="dato-item"><dt>Identificación</dt><dd>RP 1240</dd></div>
+              <div class="dato-item"><dt>Nacimiento</dt><dd>02/09/2024</dd></div>
+              <div class="dato-item"><dt>Pelaje</dt><dd>Colorado</dd></div>
+              <div class="dato-item"><dt>Padre</dt><dd>Cardenal Red Eye (RP 551)</dd></div>
+              <div class="dato-item"><dt>Madre</dt><dd>Chafalote Mandinga (RP 704)</dd></div>
+              <div class="dato-item"><dt>Peso nacer</dt><dd>36 kg</dd></div>
+              <div class="dato-item"><dt>Peso destete</dt><dd>235 kg</dd></div>
+              <div class="dato-item"><dt>Peso actual</dt><dd>598 kg (18m)</dd></div>
+              <div class="dato-item"><dt>Circ. escrotal</dt><dd>36 cm</dd></div>
+              <div class="dato-item ancho-completo"><dt>DEP / EPD</dt><dd>Peso final +45</dd></div>
+              <div class="dato-item ancho-completo"><dt>Observaciones</dt><dd>Toro colorado destacado por profundidad y aptitud carnicera.</dd></div>
+            </dl>
+            <div class="botones" style="margin-top: 0.6rem;">
+              <a class="boton lleno" style="width: 100%; text-align: center; padding: 0.4rem 0.5rem; font-size: 0.8rem;" target="_blank" rel="noopener" href="https://wa.me/59899123456?text=Hola,%20consulto%20por%20Chafalote%20Trueno%20(Toro%20Angus%20·%20RP%201240).">Consultar por WhatsApp</a>
+            </div>
+          </div>
+        </div>
 
         <!-- Animal 3 -->
-        <button class="ficha-card" onclick="abrirFichaModal('Don Nestor Alba', 'Carnero Ile de France · RP 0456', 'img/animales/o1.png', 'Venta permanente', [
-          ['Raza', 'Ile de France'], ['Categoría', 'Carnero'], ['Registro', 'Pedigree'], ['Identificación', 'RP 0456'],
-          ['Nacimiento', '10 de marzo de 2025'], ['Pelaje / color', 'Blanco'], 
-          ['Padre', 'Tres Árboles Zapatito'], ['Madre', 'Don Nestor Reina (RP 210)'],
-          ['Peso al nacer', '4,6 kg'], ['Peso al destete', '32 kg'], ['Peso actual', '88 kg'],
-          ['Circunf. escrotal', '34 cm'],
-          ['Observaciones', 'Imponente tipo carnicero, muy buena prolificidad y aplos correctos.']
-        ])">
-          <span class="foto">
-            <img src="img/animales/o1.png" alt="Don Nestor Alba" loading="lazy" onerror="this.style.display='none'">
-          </span>
-          <h3>Don Nestor Alba</h3>
-          <span class="sub">Carnero Ile de France · RP 0456</span>
-        </button>
+        <div class="ficha-card" id="card-3">
+          <div class="tarjeta-resumen" onclick="toggleFicha('card-3')">
+            <span class="foto">
+              <img src="img/animales/o1.png" alt="Don Nestor Alba" loading="lazy" onerror="this.style.display='none'">
+            </span>
+            <h3>Don Nestor Alba</h3>
+            <span class="sub">Carnero Ile de France · RP 0456</span>
+          </div>
+          <button class="btn-ver-mas" onclick="toggleFicha('card-3')">Ver más</button>
+          <div class="ficha-desplegable">
+            <span class="badge-estado">Venta permanente</span>
+            <dl class="datos-compactos">
+              <div class="dato-item"><dt>Raza</dt><dd>Ile de France</dd></div>
+              <div class="dato-item"><dt>Categoría</dt><dd>Carnero</dd></div>
+              <div class="dato-item"><dt>Registro</dt><dd>Pedigree</dd></div>
+              <div class="dato-item"><dt>Identificación</dt><dd>RP 0456</dd></div>
+              <div class="dato-item"><dt>Nacimiento</dt><dd>10/03/2025</dd></div>
+              <div class="dato-item"><dt>Pelaje</dt><dd>Blanco</dd></div>
+              <div class="dato-item"><dt>Padre</dt><dd>Tres Árboles Zapatito</dd></div>
+              <div class="dato-item"><dt>Madre</dt><dd>Don Nestor Reina (RP 210)</dd></div>
+              <div class="dato-item"><dt>Peso nacer</dt><dd>4,6 kg</dd></div>
+              <div class="dato-item"><dt>Peso destete</dt><dd>32 kg</dd></div>
+              <div class="dato-item"><dt>Peso actual</dt><dd>88 kg</dd></div>
+              <div class="dato-item"><dt>Circ. escrotal</dt><dd>34 cm</dd></div>
+              <div class="dato-item ancho-completo"><dt>Observaciones</dt><dd>Imponente tipo carnicero, prolífico y aplos correctos.</dd></div>
+            </dl>
+            <div class="botones" style="margin-top: 0.6rem;">
+              <a class="boton lleno" style="width: 100%; text-align: center; padding: 0.4rem 0.5rem; font-size: 0.8rem;" target="_blank" rel="noopener" href="https://wa.me/59899123456?text=Hola,%20consulto%20por%20Don%20Nestor%20Alba%20(Carnero%20Ile%20de%20France%20·%20RP%200456).">Consultar por WhatsApp</a>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -192,35 +313,11 @@
   <p>&copy; Cabaña Don Nestor - Rocha, Uruguay.</p>
 </footer>
 
-<!-- Modal de la ficha detallada -->
-<dialog id="ficha-dlg" aria-labelledby="ficha-titulo">
-  <button class="cerrar" aria-label="Cerrar" onclick="document.getElementById('ficha-dlg').close()">×</button>
-  <div class="ficha" id="ficha-cont"></div>
-</dialog>
-
 <script>
-  function abrirFichaModal(nombre, subtitulo, foto, estado, datosFila) {
-    const fichaCont = document.getElementById('ficha-cont');
-    const fichaDlg = document.getElementById('ficha-dlg');
-    
-    let htmlDatos = datosFila.map(f => `<div><dt>${f[0]}</dt><dd>${f[1]}</dd></div>`).join('');
-    let mensajeWa = encodeURIComponent(`Hola, consulto por ${nombre} (${subtitulo}).`);
-
-    fichaCont.innerHTML = `
-      <div class="ficha-lado"><img src="${foto}" alt="${nombre}" onerror="this.style.display='none'"></div>
-      <div class="ficha-cuerpo">
-        <h3 id="ficha-titulo">${nombre}</h3>
-        <p class="sub">${estado}</p>
-        <dl class="datos">${htmlDatos}</dl>
-        <div class="botones"><a class="boton lleno" target="_blank" rel="noopener" href="https://wa.me/59899123456?text=${mensajeWa}">Consultar por este animal</a></div>
-      </div>`;
-    
-    fichaDlg.showModal();
+  function toggleFicha(cardId) {
+    const card = document.getElementById(cardId);
+    card.classList.toggle('abierto');
   }
-
-  document.querySelectorAll('dialog').forEach(d => {
-    d.addEventListener('click', e => { if (e.target === d || e.target.closest('.cerrar')) d.close(); });
-  });
 </script>
 <script src="js/main.js"></script>
 </body>
